@@ -165,9 +165,30 @@ class Feed extends Element
         return null; // TODO
     }
 
+    /**
+     * Return feed entries.
+     *
+     * @return Entry[]
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @since 1.0
+     */
     public function getEntries()
     {
-        return null; // TODO
+        return $this->getCachedProperty(
+            'entries',
+            function () {
+                $result = [];
+                /** @var \DOMNodeList $items */
+                $items = $this->query('atom:entry');
+                foreach ($items as $item) {
+                    $result[] = new Entry($item);
+                }
+
+                return $result;
+            }
+        );
     }
 
     /**
