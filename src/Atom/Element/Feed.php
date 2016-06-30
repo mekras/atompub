@@ -7,9 +7,6 @@
  */
 namespace Mekras\AtomPub\Atom\Element;
 
-use Mekras\AtomPub\Atom\Construct\Text;
-use Mekras\AtomPub\Atom\Exception\MalformedNodeException;
-
 /**
  * Atom Feed.
  *
@@ -19,6 +16,8 @@ use Mekras\AtomPub\Atom\Exception\MalformedNodeException;
  */
 class Feed extends Element
 {
+    use Traits\Title;
+
     /**
      * Return Feed ID.
      *
@@ -35,27 +34,6 @@ class Feed extends Element
             'id',
             function () {
                 return trim($this->query('atom:id', self::SINGLE | self::REQUIRED)->nodeValue);
-            }
-        );
-    }
-
-    /**
-     * Return Feed title.
-     *
-     * @return Text
-     *
-     * @throws \InvalidArgumentException
-     * @throws \Mekras\AtomPub\Atom\Exception\MalformedNodeException
-     *
-     * @since 1.0
-     * @link  https://tools.ietf.org/html/rfc4287#section-4.2.14
-     */
-    public function getTitle()
-    {
-        return $this->getCachedProperty(
-            'title',
-            function () {
-                return new Text($this->query('atom:title', self::SINGLE | self::REQUIRED));
             }
         );
     }

@@ -7,7 +7,7 @@
  */
 namespace Mekras\AtomPub\Type;
 
-use Mekras\AtomPub\Atom\Construct\Text;
+use Mekras\AtomPub\Atom\Element\Traits\Title;
 
 /**
  * Collection.
@@ -18,44 +18,7 @@ use Mekras\AtomPub\Atom\Construct\Text;
  */
 class Collection extends Element
 {
-    /**
-     * Return title.
-     *
-     * @return Text
-     *
-     * @throws \InvalidArgumentException
-     * @throws \Mekras\AtomPub\Atom\Exception\MalformedNodeException
-     *
-     * @since 1.0
-     */
-    public function getTitle()
-    {
-        return $this->getCachedProperty(
-            'title',
-            function () {
-                return new Text($this->query('atom:title', self::SINGLE | self::REQUIRED));
-            }
-        );
-    }
-
-    /**
-     * Set title.
-     *
-     * @param Text|string $title
-     *
-     * @since 1.0
-     */
-    public function setTitle($title)
-    {
-        $element = $this->query('atom:title', self::SINGLE);
-        if (null === $element) {
-            $element = $this->getDomElement()->ownerDocument->createElementNS(self::ATOM, 'title');
-            $this->getDomElement()->appendChild($element);
-        }
-        $text = new Text($element);
-        $text->setValue($title);
-        $this->setCachedProperty('title', $text);
-    }
+    use Title;
 
     /**
      * The IRI of the Collection.

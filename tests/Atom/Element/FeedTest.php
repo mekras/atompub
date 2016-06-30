@@ -8,6 +8,7 @@
 namespace Mekras\AtomPub\Tests\Atom\Element;
 
 use Mekras\AtomPub\Atom\Construct\Text;
+use Mekras\AtomPub\Atom\Element\Entry;
 use Mekras\AtomPub\Atom\Element\Feed;
 
 /**
@@ -35,5 +36,9 @@ class FeedTest extends \PHPUnit_Framework_TestCase
         static::assertEquals('text', $value->getType());
         static::assertEquals('Feed Title', $value);
         static::assertEquals('2016-01-23 11:22:33', $feed->getUpdated()->format('Y-m-d H:i:s'));
+        $entries = $feed->getEntries();
+        static::assertCount(3, $entries);
+        static::assertInstanceOf(Entry::class, $entries[0]);
+        static::assertEquals('Entry 3 Title', (string) $entries[0]->getTitle());
     }
 }

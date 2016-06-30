@@ -7,6 +7,8 @@
  */
 namespace Mekras\AtomPub\Atom\Element;
 
+use Mekras\AtomPub\Atom\Construct\Text;
+
 /**
  * Atom Entry.
  *
@@ -14,6 +16,8 @@ namespace Mekras\AtomPub\Atom\Element;
  */
 class Entry extends Element
 {
+    use Traits\Title;
+
     /**
      * Return node name.
      *
