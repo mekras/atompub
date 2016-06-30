@@ -26,7 +26,7 @@ class FeedTest extends \PHPUnit_Framework_TestCase
     public function testImport()
     {
         $doc = new \DOMDocument();
-        $doc->load(__DIR__ . '/../fixtures/Feed.xml');
+        $doc->load(__DIR__ . '/../fixtures/FeedDocument.xml');
 
         $feed = new Feed($doc->documentElement);
         static::assertEquals('urn:foo:atom1:feed:id', $feed->getId());

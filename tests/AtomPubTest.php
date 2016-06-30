@@ -15,6 +15,7 @@ use Mekras\AtomPub\Document\ServiceDocument;
  * Tests for Mekras\AtomPub\AtomPub
  *
  * @covers Mekras\AtomPub\AtomPub
+ * @covers Mekras\AtomPub\Extension\AtomPubDocuments
  */
 class AtomPubTest extends \PHPUnit_Framework_TestCase
 {

@@ -7,19 +7,18 @@
  */
 namespace Mekras\AtomPub;
 
-use Mekras\AtomPub\Atom\Document\Document;
-use Mekras\AtomPub\Atom\Document\FeedDocument;
-use Mekras\AtomPub\Document\ServiceDocument;
+use Mekras\AtomPub\Atom\Atom;
+use Mekras\AtomPub\Extension\AtomPubDocuments;
 
 /**
- * AtomPub.
+ * XML to AtomPub Document converter.
  *
  * @since 1.0
  *
  * @api
  * @link  https://tools.ietf.org/html/rfc5023
  */
-class AtomPub
+class AtomPub extends Atom
 {
     /**
      * AtomPub namespace
@@ -29,30 +28,11 @@ class AtomPub
     const NS = 'http://www.w3.org/2007/app';
 
     /**
-     * Parse AtomPub response.
-     *
-     * @param string $xml Response XML.
-     *
-     * @return Document
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @since 1.0
+     * AtomPub constructor.
      */
-    public function parseXML($xml)
+    public function __construct()
     {
-        $doc = new \DOMDocument('1.0', 'utf-8');
-        $doc->loadXML($xml);
-
-        switch ($doc->documentElement->localName) {
-            case 'service':
-                return new ServiceDocument($doc);
-            case 'feed':
-                return new FeedDocument($doc);
-        }
-
-        throw new \InvalidArgumentException(
-            sprintf('Unexpected root element "%s"', $doc->documentElement->localName)
-        );
+        parent::__construct();
+        $this->registerDocumentType(new AtomPubDocuments());
     }
 }
