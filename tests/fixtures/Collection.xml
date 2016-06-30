@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding='utf-8'?>
+<collection xmlns="http://www.w3.org/2007/app"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    href="http://example.org/blog/pic">
+    <atom:title>Pictures</atom:title>
+    <accept>image/png</accept>
+    <accept>image/jpeg</accept>
+    <accept>image/gif</accept>
+</collection>

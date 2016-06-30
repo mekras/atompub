@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding='utf-8'?>
+<workspace xmlns="http://www.w3.org/2007/app"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:title>Main Site</atom:title>
+    <collection
+        href="http://example.org/blog/main">
+        <atom:title>My Blog Entries</atom:title>
+        <categories
+            href="http://example.com/cats/forMain.cats"/>
+    </collection>
+    <collection
+        href="http://example.org/blog/pic">
+        <atom:title>Pictures</atom:title>
+        <accept>image/png</accept>
+        <accept>image/jpeg</accept>
+        <accept>image/gif</accept>
+    </collection>
+</workspace>
