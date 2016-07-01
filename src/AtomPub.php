@@ -7,7 +7,7 @@
  */
 namespace Mekras\AtomPub;
 
-use Mekras\AtomPub\Atom\Atom;
+use Mekras\Atom\Atom;
 use Mekras\AtomPub\Extension\AtomPubDocuments;
 
 /**

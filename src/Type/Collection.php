@@ -7,7 +7,7 @@
  */
 namespace Mekras\AtomPub\Type;
 
-use Mekras\AtomPub\Atom\Element\Traits\Title;
+use Mekras\Atom\Element\Meta\Title;
 
 /**
  * Collection.

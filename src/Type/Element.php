@@ -7,7 +7,7 @@
  */
 namespace Mekras\AtomPub\Type;
 
-use Mekras\AtomPub\Atom\Element\Element as AtomElement;
+use Mekras\Atom\Element\Element as AtomElement;
 use Mekras\AtomPub\AtomPub;
 
 /**

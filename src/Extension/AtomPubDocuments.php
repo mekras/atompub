@@ -7,8 +7,8 @@
  */
 namespace Mekras\AtomPub\Extension;
 
-use Mekras\AtomPub\Atom\Document\Document;
-use Mekras\AtomPub\Atom\Extension\DocumentType;
+use Mekras\Atom\Document\Document;
+use Mekras\Atom\Extension\DocumentType;
 use Mekras\AtomPub\AtomPub;
 use Mekras\AtomPub\Document\ServiceDocument;
 

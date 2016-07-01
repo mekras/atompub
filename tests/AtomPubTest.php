@@ -7,7 +7,7 @@
  */
 namespace Mekras\AtomPub\Tests;
 
-use Mekras\AtomPub\Atom\Document\FeedDocument;
+use Mekras\Atom\Document\FeedDocument;
 use Mekras\AtomPub\AtomPub;
 use Mekras\AtomPub\Document\ServiceDocument;
 
