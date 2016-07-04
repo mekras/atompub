@@ -7,6 +7,7 @@
  */
 namespace Mekras\AtomPub\Document;
 
+use Mekras\Atom\Atom;
 use Mekras\Atom\Document\Document as AtomDocument;
 use Mekras\AtomPub\AtomPub;
 
@@ -32,7 +33,7 @@ abstract class Document extends AtomDocument
     {
         parent::__construct($document);
         $this->getDomDocument()->documentElement
-            ->setAttributeNS(self::XMLNS, 'xmlns:atom', self::ATOM);
+            ->setAttributeNS(Atom::XMLNS, 'xmlns:atom', Atom::NS);
     }
 
     /**
