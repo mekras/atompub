@@ -32,8 +32,10 @@ abstract class Document extends AtomDocument
     public function __construct($document = null)
     {
         parent::__construct($document);
-        $this->getDomDocument()->documentElement
-            ->setAttributeNS(Atom::XMLNS, 'xmlns:atom', Atom::NS);
+        if (null === $document) {
+            $this->getDomDocument()->documentElement
+                ->setAttributeNS(Atom::XMLNS, 'xmlns:atom', Atom::NS);
+        }
     }
 
     /**
