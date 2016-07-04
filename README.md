@@ -38,3 +38,20 @@ try {
 - [ServiceDocument](src/Document/ServiceDocument.php)
 - [CategoryDocument](src/Document/CategoryDocument.php)
 
+## Creating entries
+
+```php
+use Mekras\Atom\Document\EntryDocument;
+
+$document = new EntryDocument();
+$entry = $document->getEntry();
+$entry->setId('urn:foo:entry:0001');
+$entry->setTitle('Entry Title');
+$entry->addAuthor('Author 1', 'foo@example.com');
+$entry->addAuthor('Author 2', null, 'http://example.com/');
+$entry->getContent()->setValue('<h1>Entry content</h1>', 'html');
+$entry->addCategory('tag1')->setLabel('Tag label')->setScheme('http://example.com/scheme');
+
+// Suppose that $httpClient is some kind of HTTP client...
+$httpClient->sendRequest('POST', 'http://example.com/', (string) $document);
+```
