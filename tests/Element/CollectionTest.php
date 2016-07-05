@@ -8,6 +8,7 @@
 namespace Mekras\AtomPub\Tests\Element;
 
 use Mekras\AtomPub\Element\Collection;
+use Mekras\AtomPub\Tests\TestCase;
 
 /**
  * Tests for Mekras\AtomPub\Element\Collection
@@ -15,17 +16,14 @@ use Mekras\AtomPub\Element\Collection;
  * @covers Mekras\AtomPub\Element\Collection
  * @covers Mekras\AtomPub\Element\Element
  */
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends TestCase
 {
     /**
      *
      */
     public function testParse()
     {
-        $doc = new \DOMDocument('1.0', 'utf-8');
-        $doc->load(__DIR__ . '/../fixtures/Collection.xml');
-
-        $collection = new Collection($doc->documentElement);
+        $collection = new Collection($this->loadFixture('Collection.xml')->documentElement);
 
         static::assertEquals('Pictures', $collection->getTitle());
         static::assertEquals('http://example.org/blog/pic', $collection->getHref());

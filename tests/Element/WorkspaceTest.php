@@ -9,6 +9,7 @@ namespace Mekras\AtomPub\Tests\Element;
 
 use Mekras\AtomPub\Element\Collection;
 use Mekras\AtomPub\Element\Workspace;
+use Mekras\AtomPub\Tests\TestCase;
 
 /**
  * Tests for Mekras\AtomPub\Element\Workspace
@@ -16,17 +17,14 @@ use Mekras\AtomPub\Element\Workspace;
  * @covers Mekras\AtomPub\Element\Workspace
  * @covers Mekras\AtomPub\Element\Element
  */
-class WorkspaceTest extends \PHPUnit_Framework_TestCase
+class WorkspaceTest extends TestCase
 {
     /**
      *
      */
     public function testParse()
     {
-        $doc = new \DOMDocument('1.0', 'utf-8');
-        $doc->load(__DIR__ . '/../fixtures/Workspace.xml');
-
-        $workspace = new Workspace($doc->documentElement);
+        $workspace = new Workspace($this->loadFixture('Workspace.xml')->documentElement);
 
         static::assertEquals('Main Site', $workspace->getTitle());
         $collections = $workspace->getCollections();

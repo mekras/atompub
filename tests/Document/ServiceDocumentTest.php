@@ -8,6 +8,7 @@
 namespace Mekras\AtomPub\Tests\Document;
 
 use Mekras\AtomPub\Document\ServiceDocument;
+use Mekras\AtomPub\Tests\TestCase;
 
 /**
  * Tests for Mekras\AtomPub\Document\ServiceDocument
@@ -15,17 +16,14 @@ use Mekras\AtomPub\Document\ServiceDocument;
  * @covers Mekras\AtomPub\Document\ServiceDocument
  * @covers Mekras\AtomPub\Document\Document
  */
-class ServiceDocumentTest extends \PHPUnit_Framework_TestCase
+class ServiceDocumentTest extends TestCase
 {
     /**
      *
      */
     public function testParse()
     {
-        $doc = new \DOMDocument('1.0', 'utf-8');
-        $doc->load(__DIR__ . '/../fixtures/ServiceDocument.xml');
-
-        $document = new ServiceDocument($doc);
+        $document = new ServiceDocument($this->loadFixture('ServiceDocument.xml'));
         $items = $document->getWorkspaces();
 
         static::assertCount(2, $items);
@@ -69,7 +67,7 @@ class ServiceDocumentTest extends \PHPUnit_Framework_TestCase
         $doc = $document->getDomDocument();
         $doc->formatOutput = true;
         static::assertEquals(
-            file_get_contents(__DIR__ . '/../fixtures/ServiceDocument.txt'),
+            file_get_contents($this->locateFixture('ServiceDocument.txt')),
             $doc->saveXML()
         );
     }

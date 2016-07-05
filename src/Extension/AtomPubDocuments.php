@@ -11,6 +11,7 @@ use Mekras\Atom\Atom;
 use Mekras\Atom\Document\Document;
 use Mekras\Atom\Extension\DocumentType;
 use Mekras\AtomPub\AtomPub;
+use Mekras\AtomPub\Document\CategoryDocument;
 use Mekras\AtomPub\Document\EntryDocument;
 use Mekras\AtomPub\Document\FeedDocument;
 use Mekras\AtomPub\Document\ServiceDocument;
@@ -39,6 +40,8 @@ class AtomPubDocuments implements DocumentType
             switch ($document->documentElement->localName) {
                 case 'service':
                     return new ServiceDocument($document);
+                case 'categories':
+                    return new CategoryDocument($document);
             }
         } elseif (Atom::NS === $document->documentElement->namespaceURI) {
             switch ($document->documentElement->localName) {

@@ -54,7 +54,7 @@ trait MemberUri
      */
     public function setMemberUri($value)
     {
-        $element = $this->query('atom:link[@rel="edit"]', Node::SINGLE | Node::REQUIRED);
+        $element = $this->query('atom:link[@rel="edit"]', Node::SINGLE);
         if (null === $element) {
             $element = $this->getDomElement()->ownerDocument->createElementNS(Atom::NS, 'link');
             $this->getDomElement()->appendChild($element);

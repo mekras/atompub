@@ -7,8 +7,10 @@
  */
 namespace Mekras\AtomPub\Tests;
 
-use Mekras\Atom\Document\FeedDocument;
 use Mekras\AtomPub\AtomPub;
+use Mekras\AtomPub\Document\CategoryDocument;
+use Mekras\AtomPub\Document\EntryDocument;
+use Mekras\AtomPub\Document\FeedDocument;
 use Mekras\AtomPub\Document\ServiceDocument;
 
 /**
@@ -17,7 +19,7 @@ use Mekras\AtomPub\Document\ServiceDocument;
  * @covers Mekras\AtomPub\AtomPub
  * @covers Mekras\AtomPub\Extension\AtomPubDocuments
  */
-class AtomPubTest extends \PHPUnit_Framework_TestCase
+class AtomPubTest extends TestCase
 {
     /**
      *
@@ -25,8 +27,18 @@ class AtomPubTest extends \PHPUnit_Framework_TestCase
     public function testParseService()
     {
         $atompub = new AtomPub();
-        $doc = $atompub->parseXML(file_get_contents(__DIR__ . '/fixtures/ServiceDocument.txt'));
+        $doc = $atompub->parseDocument($this->loadFixture('ServiceDocument.xml'));
         static::assertInstanceOf(ServiceDocument::class, $doc);
+    }
+
+    /**
+     *
+     */
+    public function testParseCategory()
+    {
+        $atompub = new AtomPub();
+        $doc = $atompub->parseDocument($this->loadFixture('CategoryDocument.xml'));
+        static::assertInstanceOf(CategoryDocument::class, $doc);
     }
 
     /**
@@ -35,7 +47,17 @@ class AtomPubTest extends \PHPUnit_Framework_TestCase
     public function testParseFeed()
     {
         $atompub = new AtomPub();
-        $doc = $atompub->parseXML(file_get_contents(__DIR__ . '/fixtures/FeedDocument.xml'));
+        $doc = $atompub->parseDocument($this->loadFixture('FeedDocument.xml'));
         static::assertInstanceOf(FeedDocument::class, $doc);
+    }
+
+    /**
+     *
+     */
+    public function testParseEntry()
+    {
+        $atompub = new AtomPub();
+        $doc = $atompub->parseDocument($this->loadFixture('EntryDocument.xml'));
+        static::assertInstanceOf(EntryDocument::class, $doc);
     }
 }
