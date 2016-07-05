@@ -5,15 +5,15 @@
  * @author  Михаил Красильников <m.krasilnikov@yandex.ru>
  * @license MIT
  */
-namespace Mekras\AtomPub\Tests\Type;
+namespace Mekras\AtomPub\Tests\Element;
 
-use Mekras\AtomPub\Type\Collection;
+use Mekras\AtomPub\Element\Collection;
 
 /**
- * Tests for Mekras\AtomPub\Type\Collection
+ * Tests for Mekras\AtomPub\Element\Collection
  *
- * @covers Mekras\AtomPub\Type\Collection
- * @covers Mekras\AtomPub\Type\Element
+ * @covers Mekras\AtomPub\Element\Collection
+ * @covers Mekras\AtomPub\Element\Element
  */
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {

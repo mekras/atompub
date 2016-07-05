@@ -5,13 +5,13 @@
  * @author  Михаил Красильников <m.krasilnikov@yandex.ru>
  * @license MIT
  */
-namespace Mekras\AtomPub\Type;
+namespace Mekras\AtomPub\Element;
 
 use Mekras\Atom\Element\Element as AtomElement;
 use Mekras\AtomPub\AtomPub;
 
 /**
- * Abstract AtomPub Node.
+ * Abstract AtomPub element.
  *
  * @since 1.0
  */

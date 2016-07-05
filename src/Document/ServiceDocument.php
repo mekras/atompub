@@ -7,7 +7,7 @@
  */
 namespace Mekras\AtomPub\Document;
 
-use Mekras\AtomPub\Type\Workspace;
+use Mekras\AtomPub\Element\Workspace;
 
 /**
  * Service Document.

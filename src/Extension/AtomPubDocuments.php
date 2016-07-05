@@ -7,9 +7,12 @@
  */
 namespace Mekras\AtomPub\Extension;
 
+use Mekras\Atom\Atom;
 use Mekras\Atom\Document\Document;
 use Mekras\Atom\Extension\DocumentType;
 use Mekras\AtomPub\AtomPub;
+use Mekras\AtomPub\Document\EntryDocument;
+use Mekras\AtomPub\Document\FeedDocument;
 use Mekras\AtomPub\Document\ServiceDocument;
 
 /**
@@ -36,6 +39,13 @@ class AtomPubDocuments implements DocumentType
             switch ($document->documentElement->localName) {
                 case 'service':
                     return new ServiceDocument($document);
+            }
+        } elseif (Atom::NS === $document->documentElement->namespaceURI) {
+            switch ($document->documentElement->localName) {
+                case 'feed':
+                    return new FeedDocument($document);
+                case 'entry':
+                    return new EntryDocument($document);
             }
         }
 

@@ -5,16 +5,16 @@
  * @author  Михаил Красильников <m.krasilnikov@yandex.ru>
  * @license MIT
  */
-namespace Mekras\AtomPub\Tests\Type;
+namespace Mekras\AtomPub\Tests\Element;
 
-use Mekras\AtomPub\Type\Collection;
-use Mekras\AtomPub\Type\Workspace;
+use Mekras\AtomPub\Element\Collection;
+use Mekras\AtomPub\Element\Workspace;
 
 /**
- * Tests for Mekras\AtomPub\Type\Workspace
+ * Tests for Mekras\AtomPub\Element\Workspace
  *
- * @covers Mekras\AtomPub\Type\Workspace
- * @covers Mekras\AtomPub\Type\Element
+ * @covers Mekras\AtomPub\Element\Workspace
+ * @covers Mekras\AtomPub\Element\Element
  */
 class WorkspaceTest extends \PHPUnit_Framework_TestCase
 {
