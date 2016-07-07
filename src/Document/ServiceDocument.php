@@ -35,7 +35,7 @@ class ServiceDocument extends Document
                 $workspaces = [];
                 $items = $this->getDomElement()->getElementsByTagNameNS($this->ns(), 'workspace');
                 foreach ($items as $item) {
-                    $workspaces[] = $this->getExtensions()->parseElement($item);
+                    $workspaces[] = $this->getExtensions()->parseElement($this, $item);
                 }
 
                 return $workspaces;
@@ -59,7 +59,7 @@ class ServiceDocument extends Document
         $workspaces = $this->getWorkspaces();
 
         /** @var Workspace $workspace */
-        $workspace = $this->getExtensions()->createElement($this, 'workspace');
+        $workspace = $this->getExtensions()->createElement($this, 'app:workspace');
         $workspace->setTitle($title);
 
         $workspaces[] = $workspace;

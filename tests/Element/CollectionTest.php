@@ -21,7 +21,7 @@ class CollectionTest extends TestCase
     public function testParse()
     {
         $collection = new Collection(
-            $this->createExtensions(),
+            $this->createFakeNode(),
             $this->loadFixture('Collection.xml')->documentElement
         );
 
@@ -43,7 +43,7 @@ class CollectionTest extends TestCase
             '<collection xmlns="http://www.w3.org/2007/app" ' .
             'xmlns:atom="http://www.w3.org/2005/Atom"/>'
         );
-        $collection = new Collection($this->createExtensions(), $doc->documentElement);
+        $collection = new Collection($this->createFakeNode(), $doc->documentElement);
         $collection->setTitle('Foo');
         $collection->setHref('http://example.org/foo');
         $collection->setAcceptedTypes(['a', 'b', 'c']);

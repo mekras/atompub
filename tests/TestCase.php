@@ -7,9 +7,10 @@
  */
 namespace Mekras\AtomPub\Tests;
 
-use Mekras\Atom\AtomDocuments;
-use Mekras\Atom\AtomElements;
+use Mekras\Atom\Atom;
+use Mekras\Atom\AtomExtension;
 use Mekras\Atom\Extensions;
+use Mekras\Atom\Node;
 use Mekras\AtomPub\Extension\AtomPubExtension;
 
 /**
@@ -18,6 +19,25 @@ use Mekras\AtomPub\Extension\AtomPubExtension;
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
     /**
+     * Return new fake Node instance.
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject|Node
+     */
+    protected function createFakeNode()
+    {
+        $doc = $this->createDocument();
+
+        $node = $this->getMockBuilder(Node::class)->disableOriginalConstructor()
+            ->setMethods(['getDomElement', 'getExtensions'])->getMock();
+        $node->expects(static::any())->method('getDomElement')
+            ->willReturn($doc->documentElement);
+        $node->expects(static::any())->method('getExtensions')
+            ->willReturn($this->createExtensions());
+
+        return $node;
+    }
+
+    /**
      * Create and fill Extensions instance.
      *
      * @return Extensions
@@ -25,11 +45,32 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function createExtensions()
     {
         $extensions = new Extensions();
-        $extensions->register(new AtomDocuments());
-        $extensions->register(new AtomElements());
+        $extensions->register(new AtomExtension());
         $extensions->register(new AtomPubExtension());
 
         return $extensions;
+    }
+
+    /**
+     * Create new empty document
+     *
+     * @param string $contents     XML
+     * @param string $rootNodeName default "doc"
+     *
+     * @return \DOMDocument
+     */
+    protected function createDocument($contents = '', $rootNodeName = 'doc')
+    {
+        $document = new \DOMDocument();
+        $document->loadXML(
+            '<?xml version="1.0" encoding="utf-8"?>' .
+            '<' . $rootNodeName . ' xmlns="' . Atom::NS . '" ' .
+            'xmlns:xhtml="' . Atom::XHTML . '">' .
+            $contents .
+            '</' . $rootNodeName . '>'
+        );
+
+        return $document;
     }
 
     /**

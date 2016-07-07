@@ -7,7 +7,7 @@
  */
 namespace Mekras\AtomPub\Element;
 
-use Mekras\Atom\Element\Meta\Title;
+use Mekras\Atom\Element\Meta\HasTitle;
 
 /**
  * Collection.
@@ -18,7 +18,7 @@ use Mekras\Atom\Element\Meta\Title;
  */
 class Collection extends Element
 {
-    use Title;
+    use HasTitle;
 
     /**
      * The IRI of the Collection.

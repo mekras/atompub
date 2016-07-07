@@ -8,8 +8,8 @@
 namespace Mekras\AtomPub\Element\Meta;
 
 use Mekras\Atom\Atom;
-use Mekras\Atom\Element\Meta\Base;
 use Mekras\Atom\Node;
+use Mekras\Atom\NodeInterfaceTrait;
 
 /**
  * Support for "atom:link[rel=edit]".
@@ -18,9 +18,9 @@ use Mekras\Atom\Node;
  *
  * @link  https://tools.ietf.org/html/rfc4287#section-9.1
  */
-trait MemberUri
+trait HasMemberUri
 {
-    use Base;
+    use NodeInterfaceTrait;
 
     /**
      * Return Member URI.

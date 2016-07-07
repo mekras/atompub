@@ -7,7 +7,7 @@
  */
 namespace Mekras\AtomPub\Element;
 
-use Mekras\Atom\Element\Meta\Title;
+use Mekras\Atom\Element\Meta\HasTitle;
 
 /**
  * Workspace.
@@ -18,7 +18,7 @@ use Mekras\Atom\Element\Meta\Title;
  */
 class Workspace extends Element
 {
-    use Title;
+    use HasTitle;
 
     /**
      * Return collections.
@@ -38,7 +38,7 @@ class Workspace extends Element
                 /** @var \DOMNodeList $items */
                 $items = $this->query('app:collection');
                 foreach ($items as $item) {
-                    $result[] = $this->getExtensions()->parseElement($item);
+                    $result[] = $this->getExtensions()->parseElement($this, $item);
                 }
 
                 return $result;
@@ -62,7 +62,7 @@ class Workspace extends Element
         $collections = $this->getCollections();
 
         /** @var Collection $collection */
-        $collection = $this->getExtensions()->createElement($this, 'collection');
+        $collection = $this->getExtensions()->createElement($this, 'app:collection');
         $collection->setTitle($title);
 
         $collections[] = $collection;

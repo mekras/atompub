@@ -12,6 +12,7 @@ use Mekras\Atom\Document\Document;
 use Mekras\Atom\Element\Element;
 use Mekras\Atom\Extension\DocumentExtension;
 use Mekras\Atom\Extension\ElementExtension;
+use Mekras\Atom\Extension\NamespaceExtension;
 use Mekras\Atom\Extensions;
 use Mekras\Atom\Node;
 use Mekras\AtomPub\AtomPub;
@@ -27,7 +28,7 @@ use Mekras\AtomPub\Element\Workspace;
  *
  * @since 1.0
  */
-class AtomPubExtension implements DocumentExtension, ElementExtension
+class AtomPubExtension implements DocumentExtension, ElementExtension, NamespaceExtension
 {
     /**
      * Create Atom document from XML DOM document.
@@ -70,9 +71,9 @@ class AtomPubExtension implements DocumentExtension, ElementExtension
     public function createDocument(Extensions $extensions, $name)
     {
         switch ($name) {
-            case 'service':
+            case 'app:service':
                 return new ServiceDocument($extensions);
-            case 'categories':
+            case 'app:categories':
                 return new CategoryDocument($extensions);
         }
 
@@ -82,8 +83,8 @@ class AtomPubExtension implements DocumentExtension, ElementExtension
     /**
      * Create Atom node from XML DOM element.
      *
-     * @param Extensions  $extensions Extension registry.
-     * @param \DOMElement $element    DOM element.
+     * @param Node        $parent  Parent node.
+     * @param \DOMElement $element DOM element.
      *
      * @return Element|null
      *
@@ -91,21 +92,21 @@ class AtomPubExtension implements DocumentExtension, ElementExtension
      *
      * @since 1.0
      */
-    public function parseElement(Extensions $extensions, $element)
+    public function parseElement(Node $parent, \DOMElement $element)
     {
         if (Atom::NS === $element->namespaceURI) {
             switch ($element->localName) {
                 case 'entry':
-                    return new Entry($extensions, $element);
+                    return new Entry($parent, $element);
                 case 'feed':
-                    return new Feed($extensions, $element);
+                    return new Feed($parent, $element);
             }
         } elseif (AtomPub::NS === $element->namespaceURI) {
             switch ($element->localName) {
                 case 'collection':
-                    return new Collection($extensions, $element);
+                    return new Collection($parent, $element);
                 case 'workspace':
-                    return new Workspace($extensions, $element);
+                    return new Workspace($parent, $element);
             }
         }
 
@@ -115,9 +116,8 @@ class AtomPubExtension implements DocumentExtension, ElementExtension
     /**
      * Create new Atom node.
      *
-     * @param Extensions $extensions Extension registry.
-     * @param Node       $parent     Parent node.
-     * @param string     $name       Element name.
+     * @param Node   $parent Parent node.
+     * @param string $name   Element name.
      *
      * @return Element|null
      *
@@ -125,19 +125,31 @@ class AtomPubExtension implements DocumentExtension, ElementExtension
      *
      * @since 1.0
      */
-    public function createElement(Extensions $extensions, Node $parent, $name)
+    public function createElement(Node $parent, $name)
     {
         switch ($name) {
-            case 'entry':
-                return new Entry($extensions, $parent);
-            case 'feed':
-                return new Feed($extensions, $parent);
-            case 'collection':
-                return new Collection($extensions, $parent);
-            case 'workspace':
-                return new Workspace($extensions, $parent);
+            case 'atom:entry':
+                return new Entry($parent);
+            case 'atom:feed':
+                return new Feed($parent);
+            case 'app:collection':
+                return new Collection($parent);
+            case 'app:workspace':
+                return new Workspace($parent);
         }
 
         return null;
+    }
+
+    /**
+     * Return additional XML namespaces.
+     *
+     * @return string[] prefix => namespace.
+     *
+     * @since 1.0
+     */
+    public function getNamespaces()
+    {
+        return [AtomPub::NS];
     }
 }

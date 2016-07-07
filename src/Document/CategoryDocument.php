@@ -7,7 +7,7 @@
  */
 namespace Mekras\AtomPub\Document;
 
-use Mekras\Atom\Element\Meta\Categories;
+use Mekras\Atom\Element\Meta\HasCategories;
 
 /**
  * Category Document.
@@ -18,7 +18,7 @@ use Mekras\Atom\Element\Meta\Categories;
  */
 class CategoryDocument extends Document
 {
-    use Categories;
+    use HasCategories;
 
     /**
      * Indicating whether the list of categories is a fixed or an open set.

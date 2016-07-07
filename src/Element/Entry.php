@@ -18,5 +18,5 @@ use Mekras\Atom\Element\Entry as AtomEntry;
  */
 class Entry extends AtomEntry
 {
-    use Meta\MemberUri;
+    use Meta\HasMemberUri;
 }

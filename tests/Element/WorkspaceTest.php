@@ -22,7 +22,7 @@ class WorkspaceTest extends TestCase
     public function testParse()
     {
         $workspace = new Workspace(
-            $this->createExtensions(),
+            $this->createFakeNode(),
             $this->loadFixture('Workspace.xml')->documentElement
         );
 
@@ -42,7 +42,7 @@ class WorkspaceTest extends TestCase
             '<workspace xmlns="http://www.w3.org/2007/app" ' .
             'xmlns:atom="http://www.w3.org/2005/Atom"/>'
         );
-        $workspace = new Workspace($this->createExtensions(), $doc->documentElement);
+        $workspace = new Workspace($this->createFakeNode(), $doc->documentElement);
         $workspace->setTitle('Foo');
         $workspace->addCollection('Foo Collection');
         static::assertEquals('Foo', (string) $workspace->getTitle());

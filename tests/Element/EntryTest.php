@@ -21,7 +21,7 @@ class EntryTest extends TestCase
     public function testGetMemberUri()
     {
         $entry = new Entry(
-            $this->createExtensions(),
+            $this->createFakeNode(),
             $this->loadFixture('EntryDocument.xml')->documentElement
         );
         static::assertEquals('http://example.com/atom/atom/?edit=0001', $entry->getMemberUri());
@@ -33,7 +33,7 @@ class EntryTest extends TestCase
     public function testSetMemberUri1()
     {
         $entry = new Entry(
-            $this->createExtensions(),
+            $this->createFakeNode(),
             $this->loadFixture('EntryDocument.xml')->documentElement
         );
         $entry->setMemberUri('http://example.com/atom/atom/?edit=0002');
@@ -50,7 +50,7 @@ class EntryTest extends TestCase
     public function testSetMemberUri2()
     {
         $entry = new Entry(
-            $this->createExtensions(),
+            $this->createFakeNode(),
             $this->loadFixture('EmptyEntry.xml')->documentElement
         );
         $entry->setMemberUri('http://example.com/atom/atom/?edit=0001');

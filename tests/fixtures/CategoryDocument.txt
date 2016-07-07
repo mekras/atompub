@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<categories xmlns="http://www.w3.org/2007/app" xmlns:atom="http://www.w3.org/2005/Atom" fixed="no" scheme="http://example.com/cats/big3">
+<categories xmlns="http://www.w3.org/2007/app" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xhtml="http://www.w3.org/1999/xhtml" fixed="no" scheme="http://example.com/cats/big3">
   <atom:category term="animal"/>
   <atom:category term="vegetable"/>
   <atom:category term="mineral"/>
