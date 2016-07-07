@@ -7,11 +7,31 @@
  */
 namespace Mekras\AtomPub\Tests;
 
+use Mekras\Atom\AtomDocuments;
+use Mekras\Atom\AtomElements;
+use Mekras\Atom\Extensions;
+use Mekras\AtomPub\Extension\AtomPubExtension;
+
 /**
  * Base test case.
  */
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Create and fill Extensions instance.
+     *
+     * @return Extensions
+     */
+    protected function createExtensions()
+    {
+        $extensions = new Extensions();
+        $extensions->register(new AtomDocuments());
+        $extensions->register(new AtomElements());
+        $extensions->register(new AtomPubExtension());
+
+        return $extensions;
+    }
+
     /**
      * Locate fixture and return absolute path.
      *

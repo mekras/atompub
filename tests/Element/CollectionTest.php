@@ -12,9 +12,6 @@ use Mekras\AtomPub\Tests\TestCase;
 
 /**
  * Tests for Mekras\AtomPub\Element\Collection
- *
- * @covers Mekras\AtomPub\Element\Collection
- * @covers Mekras\AtomPub\Element\Element
  */
 class CollectionTest extends TestCase
 {
@@ -23,7 +20,10 @@ class CollectionTest extends TestCase
      */
     public function testParse()
     {
-        $collection = new Collection($this->loadFixture('Collection.xml')->documentElement);
+        $collection = new Collection(
+            $this->createExtensions(),
+            $this->loadFixture('Collection.xml')->documentElement
+        );
 
         static::assertEquals('Pictures', $collection->getTitle());
         static::assertEquals('http://example.org/blog/pic', $collection->getHref());
@@ -43,7 +43,7 @@ class CollectionTest extends TestCase
             '<collection xmlns="http://www.w3.org/2007/app" ' .
             'xmlns:atom="http://www.w3.org/2005/Atom"/>'
         );
-        $collection = new Collection($doc->documentElement);
+        $collection = new Collection($this->createExtensions(), $doc->documentElement);
         $collection->setTitle('Foo');
         $collection->setHref('http://example.org/foo');
         $collection->setAcceptedTypes(['a', 'b', 'c']);

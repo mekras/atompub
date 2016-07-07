@@ -12,9 +12,6 @@ use Mekras\AtomPub\Tests\TestCase;
 
 /**
  * Tests for Mekras\AtomPub\Document\CategoryDocument
- *
- * @covers Mekras\AtomPub\Document\CategoryDocument
- * @covers Mekras\AtomPub\Document\Document
  */
 class CategoryDocumentTest extends TestCase
 {
@@ -23,7 +20,10 @@ class CategoryDocumentTest extends TestCase
      */
     public function testParse()
     {
-        $document = new CategoryDocument($this->loadFixture('CategoryDocument.xml'));
+        $document = new CategoryDocument(
+            $this->createExtensions(),
+            $this->loadFixture('CategoryDocument.xml')
+        );
         $items = $document->getCategories();
 
         static::assertTrue($document->isFixed());
@@ -38,7 +38,7 @@ class CategoryDocumentTest extends TestCase
      */
     public function testCreate()
     {
-        $document = new CategoryDocument();
+        $document = new CategoryDocument($this->createExtensions());
         $document->setFixed(false);
         $document->setScheme('http://example.com/cats/big3');
         $document->setHref(null);

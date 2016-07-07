@@ -9,6 +9,7 @@ namespace Mekras\AtomPub\Document;
 
 use Mekras\Atom\Atom;
 use Mekras\Atom\Document\Document as AtomDocument;
+use Mekras\Atom\Extensions;
 use Mekras\AtomPub\AtomPub;
 
 /**
@@ -23,15 +24,16 @@ abstract class Document extends AtomDocument
     /**
      * Create document.
      *
-     * @param \DOMDocument|null $document
+     * @param Extensions        $extensions Extension registry.
+     * @param \DOMDocument|null $document   Source document.
      *
      * @throws \InvalidArgumentException
      *
      * @since 1.0
      */
-    public function __construct($document = null)
+    public function __construct(Extensions $extensions, \DOMDocument $document = null)
     {
-        parent::__construct($document);
+        parent::__construct($extensions, $document);
         if (null === $document) {
             $this->getDomDocument()->documentElement
                 ->setAttributeNS(Atom::XMLNS, 'xmlns:atom', Atom::NS);

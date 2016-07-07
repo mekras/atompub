@@ -38,7 +38,7 @@ class Workspace extends Element
                 /** @var \DOMNodeList $items */
                 $items = $this->query('app:collection');
                 foreach ($items as $item) {
-                    $result[] = new Collection($item);
+                    $result[] = $this->getExtensions()->parseElement($item);
                 }
 
                 return $result;
@@ -61,7 +61,8 @@ class Workspace extends Element
     {
         $collections = $this->getCollections();
 
-        $collection = new Collection($this);
+        /** @var Collection $collection */
+        $collection = $this->getExtensions()->createElement($this, 'collection');
         $collection->setTitle($title);
 
         $collections[] = $collection;

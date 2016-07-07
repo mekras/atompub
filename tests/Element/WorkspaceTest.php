@@ -13,9 +13,6 @@ use Mekras\AtomPub\Tests\TestCase;
 
 /**
  * Tests for Mekras\AtomPub\Element\Workspace
- *
- * @covers Mekras\AtomPub\Element\Workspace
- * @covers Mekras\AtomPub\Element\Element
  */
 class WorkspaceTest extends TestCase
 {
@@ -24,7 +21,10 @@ class WorkspaceTest extends TestCase
      */
     public function testParse()
     {
-        $workspace = new Workspace($this->loadFixture('Workspace.xml')->documentElement);
+        $workspace = new Workspace(
+            $this->createExtensions(),
+            $this->loadFixture('Workspace.xml')->documentElement
+        );
 
         static::assertEquals('Main Site', $workspace->getTitle());
         $collections = $workspace->getCollections();
@@ -42,7 +42,7 @@ class WorkspaceTest extends TestCase
             '<workspace xmlns="http://www.w3.org/2007/app" ' .
             'xmlns:atom="http://www.w3.org/2005/Atom"/>'
         );
-        $workspace = new Workspace($doc->documentElement);
+        $workspace = new Workspace($this->createExtensions(), $doc->documentElement);
         $workspace->setTitle('Foo');
         $workspace->addCollection('Foo Collection');
         static::assertEquals('Foo', (string) $workspace->getTitle());

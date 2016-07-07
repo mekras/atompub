@@ -36,7 +36,7 @@ class Feed extends AtomFeed
                 /** @var \DOMNodeList $items */
                 $items = $this->query('atom:entry');
                 foreach ($items as $item) {
-                    $result[] = new Entry($item);
+                    $result[] = $this->getExtensions()->parseElement($item);
                 }
 
                 return $result;
@@ -55,6 +55,6 @@ class Feed extends AtomFeed
      */
     public function addEntry()
     {
-        return new Entry($this);
+        return $this->getExtensions()->createElement($this, 'entry');
     }
 }

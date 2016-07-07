@@ -12,9 +12,6 @@ use Mekras\AtomPub\Tests\TestCase;
 
 /**
  * Tests for Mekras\AtomPub\Document\ServiceDocument
- *
- * @covers Mekras\AtomPub\Document\ServiceDocument
- * @covers Mekras\AtomPub\Document\Document
  */
 class ServiceDocumentTest extends TestCase
 {
@@ -23,7 +20,10 @@ class ServiceDocumentTest extends TestCase
      */
     public function testParse()
     {
-        $document = new ServiceDocument($this->loadFixture('ServiceDocument.xml'));
+        $document = new ServiceDocument(
+            $this->createExtensions(),
+            $this->loadFixture('ServiceDocument.xml')
+        );
         $items = $document->getWorkspaces();
 
         static::assertCount(2, $items);
@@ -39,7 +39,7 @@ class ServiceDocumentTest extends TestCase
         $doc = new \DOMDocument('1.0', 'utf-8');
         $doc->loadXML('<service/>');
 
-        new ServiceDocument($doc);
+        new ServiceDocument($this->createExtensions(), $doc);
     }
 
     /**
@@ -51,7 +51,7 @@ class ServiceDocumentTest extends TestCase
         $doc = new \DOMDocument('1.0', 'utf-8');
         $doc->loadXML('<foo xmlns="http://www.w3.org/2007/app"/>');
 
-        new ServiceDocument($doc);
+        new ServiceDocument($this->createExtensions(), $doc);
     }
 
     /**
@@ -59,7 +59,7 @@ class ServiceDocumentTest extends TestCase
      */
     public function testCreate()
     {
-        $document = new ServiceDocument();
+        $document = new ServiceDocument($this->createExtensions());
         $workspace = $document->addWorkspace('My Workspace');
         $collection = $workspace->addCollection('My Collection');
         $collection->setHref('http://example/org/coll1');

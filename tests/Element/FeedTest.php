@@ -13,8 +13,6 @@ use Mekras\AtomPub\Tests\TestCase;
 
 /**
  * Tests for Mekras\AtomPub\Element\Feed
- *
- * @covers Mekras\AtomPub\Element\Feed
  */
 class FeedTest extends TestCase
 {
@@ -23,7 +21,10 @@ class FeedTest extends TestCase
      */
     public function testAtomPubEntries()
     {
-        $feed = new Feed($this->loadFixture('FeedDocument.xml')->documentElement);
+        $feed = new Feed(
+            $this->createExtensions(),
+            $this->loadFixture('FeedDocument.xml')->documentElement
+        );
         $entries = $feed->getEntries();
         foreach ($entries as $entry) {
             static::assertInstanceOf(Entry::class, $entry);
@@ -35,7 +36,10 @@ class FeedTest extends TestCase
      */
     public function testAtomPubAddEntry()
     {
-        $feed = new Feed($this->loadFixture('FeedDocument.xml')->documentElement);
+        $feed = new Feed(
+            $this->createExtensions(),
+            $this->loadFixture('FeedDocument.xml')->documentElement
+        );
         $entry = $feed->addEntry();
         static::assertInstanceOf(Entry::class, $entry);
     }

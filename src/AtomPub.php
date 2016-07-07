@@ -8,7 +8,6 @@
 namespace Mekras\AtomPub;
 
 use Mekras\Atom\Atom;
-use Mekras\AtomPub\Extension\AtomPubDocuments;
 
 /**
  * XML to AtomPub Document converter.
@@ -26,13 +25,4 @@ class AtomPub extends Atom
      * @since 1.0
      */
     const NS = 'http://www.w3.org/2007/app';
-
-    /**
-     * AtomPub constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->registerDocumentType(new AtomPubDocuments());
-    }
 }
