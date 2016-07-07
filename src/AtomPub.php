@@ -7,8 +7,6 @@
  */
 namespace Mekras\AtomPub;
 
-use Mekras\Atom\Atom;
-
 /**
  * XML to AtomPub Document converter.
  *
@@ -17,7 +15,7 @@ use Mekras\Atom\Atom;
  * @api
  * @link  https://tools.ietf.org/html/rfc5023
  */
-class AtomPub extends Atom
+class AtomPub
 {
     /**
      * AtomPub namespace
