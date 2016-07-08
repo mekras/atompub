@@ -7,7 +7,6 @@
  */
 namespace Mekras\AtomPub\Extension;
 
-use Mekras\Atom\Atom;
 use Mekras\Atom\Document\Document;
 use Mekras\Atom\Element\Element;
 use Mekras\Atom\Extension\DocumentExtension;
@@ -19,7 +18,6 @@ use Mekras\AtomPub\AtomPub;
 use Mekras\AtomPub\Document\CategoryDocument;
 use Mekras\AtomPub\Document\ServiceDocument;
 use Mekras\AtomPub\Element\Collection;
-use Mekras\AtomPub\Element\Entry;
 use Mekras\AtomPub\Element\Workspace;
 
 /**
@@ -93,12 +91,7 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
      */
     public function parseElement(Node $parent, \DOMElement $element)
     {
-        if (Atom::NS === $element->namespaceURI) {
-            switch ($element->localName) {
-                case 'entry':
-                    return new Entry($parent, $element);
-            }
-        } elseif (AtomPub::NS === $element->namespaceURI) {
+        if (AtomPub::NS === $element->namespaceURI) {
             switch ($element->localName) {
                 case 'collection':
                     return new Collection($parent, $element);
@@ -125,8 +118,6 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
     public function createElement(Node $parent, $name)
     {
         switch ($name) {
-            case 'atom:entry':
-                return new Entry($parent);
             case 'app:collection':
                 return new Collection($parent);
             case 'app:workspace':
