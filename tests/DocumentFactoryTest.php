@@ -19,20 +19,40 @@ class DocumentFactoryTest extends TestCase
     /**
      *
      */
-    public function testParseService()
+    public function testParseServiceDocument()
     {
         $factory = new DocumentFactory();
-        $doc = $factory->parseDocument($this->loadFixture('ServiceDocument.xml'));
-        static::assertInstanceOf(ServiceDocument::class, $doc);
+        $document = $factory->parseDocument($this->loadFixture('ServiceDocument.xml'));
+        static::assertInstanceOf(ServiceDocument::class, $document);
     }
 
     /**
      *
      */
-    public function testParseCategory()
+    public function testCreateServiceDocument()
     {
         $factory = new DocumentFactory();
-        $doc = $factory->parseDocument($this->loadFixture('CategoryDocument.xml'));
-        static::assertInstanceOf(CategoryDocument::class, $doc);
+        $document = $factory->createDocument('app:service');
+        static::assertInstanceOf(ServiceDocument::class, $document);
+    }
+
+    /**
+     *
+     */
+    public function testParseCategoryDocument()
+    {
+        $factory = new DocumentFactory();
+        $document = $factory->parseDocument($this->loadFixture('CategoryDocument.xml'));
+        static::assertInstanceOf(CategoryDocument::class, $document);
+    }
+
+    /**
+     *
+     */
+    public function testCreateCategoryDocument()
+    {
+        $factory = new DocumentFactory();
+        $document = $factory->createDocument('app:categories');
+        static::assertInstanceOf(CategoryDocument::class, $document);
     }
 }

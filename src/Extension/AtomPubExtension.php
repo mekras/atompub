@@ -20,7 +20,6 @@ use Mekras\AtomPub\Document\CategoryDocument;
 use Mekras\AtomPub\Document\ServiceDocument;
 use Mekras\AtomPub\Element\Collection;
 use Mekras\AtomPub\Element\Entry;
-use Mekras\AtomPub\Element\Feed;
 use Mekras\AtomPub\Element\Workspace;
 
 /**
@@ -98,8 +97,6 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
             switch ($element->localName) {
                 case 'entry':
                     return new Entry($parent, $element);
-                case 'feed':
-                    return new Feed($parent, $element);
             }
         } elseif (AtomPub::NS === $element->namespaceURI) {
             switch ($element->localName) {
@@ -130,8 +127,6 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
         switch ($name) {
             case 'atom:entry':
                 return new Entry($parent);
-            case 'atom:feed':
-                return new Feed($parent);
             case 'app:collection':
                 return new Collection($parent);
             case 'app:workspace':
