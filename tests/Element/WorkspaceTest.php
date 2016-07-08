@@ -43,13 +43,11 @@ class WorkspaceTest extends TestCase
             'xmlns:atom="http://www.w3.org/2005/Atom"/>'
         );
         $workspace = new Workspace($this->createFakeNode(), $doc->documentElement);
-        $workspace->setTitle('Foo');
+        $workspace->addTitle('Foo');
         $workspace->addCollection('Foo Collection');
         static::assertEquals('Foo', (string) $workspace->getTitle());
         $collections = $workspace->getCollections();
         static::assertCount(1, $collections);
         static::assertEquals('Foo Collection', (string) $collections[0]->getTitle());
-        $workspace->setTitle('Bar');
-        static::assertEquals('Bar', (string) $workspace->getTitle());
     }
 }

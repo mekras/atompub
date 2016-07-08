@@ -60,7 +60,7 @@ class ServiceDocument extends Document
 
         /** @var Workspace $workspace */
         $workspace = $this->getExtensions()->createElement($this, 'app:workspace');
-        $workspace->setTitle($title);
+        $workspace->addTitle($title);
 
         $workspaces[] = $workspace;
         $this->setCachedProperty('workspaces', $workspaces);

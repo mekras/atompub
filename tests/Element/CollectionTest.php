@@ -44,15 +44,11 @@ class CollectionTest extends TestCase
             'xmlns:atom="http://www.w3.org/2005/Atom"/>'
         );
         $collection = new Collection($this->createFakeNode(), $doc->documentElement);
-        $collection->setTitle('Foo');
+        $collection->addTitle('Foo');
         $collection->setHref('http://example.org/foo');
         $collection->setAcceptedTypes(['a', 'b', 'c']);
         static::assertEquals('Foo', (string) $collection->getTitle());
         static::assertEquals('http://example.org/foo', $collection->getHref());
         static::assertEquals(['a', 'b', 'c'], $collection->getAcceptedTypes());
-        $collection->setTitle('Bar');
-        $collection->setAcceptedTypes(['1', '2', '3']);
-        static::assertEquals('Bar', (string) $collection->getTitle());
-        static::assertEquals(['1', '2', '3'], $collection->getAcceptedTypes());
     }
 }

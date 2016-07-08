@@ -63,7 +63,7 @@ class Workspace extends Element
 
         /** @var Collection $collection */
         $collection = $this->getExtensions()->createElement($this, 'app:collection');
-        $collection->setTitle($title);
+        $collection->addTitle($title);
 
         $collections[] = $collection;
         $this->setCachedProperty('collections', $collections);
