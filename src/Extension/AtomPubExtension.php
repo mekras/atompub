@@ -136,6 +136,6 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
      */
     public function getNamespaces()
     {
-        return [AtomPub::NS];
+        return ['app' => AtomPub::NS];
     }
 }
