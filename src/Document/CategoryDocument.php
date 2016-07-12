@@ -25,6 +25,8 @@ class CategoryDocument extends Document
      *
      * @return bool
      *
+     * @throws \InvalidArgumentException
+     *
      * @since 1.0
      */
     public function isFixed()
@@ -32,7 +34,7 @@ class CategoryDocument extends Document
         return $this->getCachedProperty(
             'fixed',
             function () {
-                return $this->getDomElement()->getAttribute('fixed') === 'yes';
+                return $this->getAttribute('fixed') === 'yes';
             }
         );
     }
@@ -42,11 +44,13 @@ class CategoryDocument extends Document
      *
      * @param bool $state
      *
+     * @throws \InvalidArgumentException
+     *
      * @since 1.0
      */
     public function setFixed($state)
     {
-        $this->getDomElement()->setAttribute('fixed', $state ? 'yes' : 'no');
+        $this->setAttribute('fixed', $state ? 'yes' : 'no');
         $this->setCachedProperty('fixed', $state);
     }
 
@@ -55,6 +59,8 @@ class CategoryDocument extends Document
      *
      * @return string|null
      *
+     * @throws \InvalidArgumentException
+     *
      * @since 1.0
      */
     public function getScheme()
@@ -62,7 +68,7 @@ class CategoryDocument extends Document
         return $this->getCachedProperty(
             'scheme',
             function () {
-                return $this->getDomElement()->getAttribute('scheme') ?: null;
+                return $this->getAttribute('scheme');
             }
         );
     }
@@ -72,15 +78,13 @@ class CategoryDocument extends Document
      *
      * @param  string|null $iri Scheme IRI.
      *
+     * @throws \InvalidArgumentException
+     *
      * @since 1.0
      */
     public function setScheme($iri)
     {
-        if (null === $iri) {
-            $this->getDomElement()->removeAttribute('scheme');
-        } else {
-            $this->getDomElement()->setAttribute('scheme', $iri);
-        }
+        $this->setAttribute('scheme', $iri);
         $this->setCachedProperty('scheme', $iri);
     }
 
@@ -89,6 +93,8 @@ class CategoryDocument extends Document
      *
      * @return string|null
      *
+     * @throws \InvalidArgumentException
+     *
      * @since 1.0
      */
     public function getHref()
@@ -96,7 +102,7 @@ class CategoryDocument extends Document
         return $this->getCachedProperty(
             'href',
             function () {
-                return $this->getDomElement()->getAttribute('href') ?: null;
+                return $this->getAttribute('href');
             }
         );
     }
@@ -106,15 +112,13 @@ class CategoryDocument extends Document
      *
      * @param  string|null $iri IRI.
      *
+     * @throws \InvalidArgumentException
+     *
      * @since 1.0
      */
     public function setHref($iri)
     {
-        if (null === $iri) {
-            $this->getDomElement()->removeAttribute('href');
-        } else {
-            $this->getDomElement()->setAttribute('href', $iri);
-        }
+        $this->setAttribute('href', $iri);
         $this->setCachedProperty('href', $iri);
     }
 

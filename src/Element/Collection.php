@@ -23,13 +23,15 @@ class Collection extends Element
     /**
      * The IRI of the Collection.
      *
-     * @return string
+     * @return string|null
+     *
+     * @throws \InvalidArgumentException
      *
      * @since 1.0
      */
     public function getHref()
     {
-        return $this->getDomElement()->getAttribute('href');
+        return $this->getAttribute('href');
     }
 
     /**
@@ -37,11 +39,13 @@ class Collection extends Element
      *
      * @param string $href
      *
+     * @throws \InvalidArgumentException
+     *
      * @since 1.0
      */
     public function setHref($href)
     {
-        $this->getDomElement()->setAttribute('href', $href);
+        $this->setAttribute('href', $href);
     }
 
     /**

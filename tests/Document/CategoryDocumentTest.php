@@ -41,7 +41,7 @@ class CategoryDocumentTest extends TestCase
         $document = new CategoryDocument($this->createExtensions());
         $document->setFixed(false);
         $document->setScheme('http://example.com/cats/big3');
-        $document->setHref(null);
+        //$document->setHref(null);
         $document->addCategory('animal');
         $document->addCategory('vegetable');
         $document->addCategory('mineral');
