@@ -25,18 +25,12 @@ class CategoryDocument extends Document
      *
      * @return bool
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function isFixed()
     {
-        return $this->getCachedProperty(
-            'fixed',
-            function () {
-                return $this->getAttribute('fixed') === 'yes';
-            }
-        );
+        // No NS prefix — no exception.
+        return $this->getAttribute('fixed') === 'yes';
     }
 
     /**
@@ -44,14 +38,12 @@ class CategoryDocument extends Document
      *
      * @param bool $state
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function setFixed($state)
     {
+        // No NS prefix — no exception.
         $this->setAttribute('fixed', $state ? 'yes' : 'no');
-        $this->setCachedProperty('fixed', $state);
     }
 
     /**
@@ -59,18 +51,12 @@ class CategoryDocument extends Document
      *
      * @return string|null
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function getScheme()
     {
-        return $this->getCachedProperty(
-            'scheme',
-            function () {
-                return $this->getAttribute('scheme');
-            }
-        );
+        // No NS prefix — no exception.
+        return $this->getAttribute('scheme');
     }
 
     /**
@@ -78,14 +64,12 @@ class CategoryDocument extends Document
      *
      * @param  string|null $iri Scheme IRI.
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function setScheme($iri)
     {
+        // No NS prefix — no exception.
         $this->setAttribute('scheme', $iri);
-        $this->setCachedProperty('scheme', $iri);
     }
 
     /**
@@ -93,18 +77,12 @@ class CategoryDocument extends Document
      *
      * @return string|null
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function getHref()
     {
-        return $this->getCachedProperty(
-            'href',
-            function () {
-                return $this->getAttribute('href');
-            }
-        );
+        // No NS prefix — no exception.
+        return $this->getAttribute('href');
     }
 
     /**
@@ -112,14 +90,12 @@ class CategoryDocument extends Document
      *
      * @param  string|null $iri IRI.
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function setHref($iri)
     {
+        // No NS prefix — no exception.
         $this->setAttribute('href', $iri);
-        $this->setCachedProperty('href', $iri);
     }
 
     /**

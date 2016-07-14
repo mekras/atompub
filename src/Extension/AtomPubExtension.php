@@ -35,8 +35,6 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
      *
      * @return Document|null
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function parseDocument(Extensions $extensions, \DOMDocument $document)
@@ -44,8 +42,10 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
         if (AtomPub::NS === $document->documentElement->namespaceURI) {
             switch ($document->documentElement->localName) {
                 case 'service':
+                    // Node name already checked
                     return new ServiceDocument($extensions, $document);
                 case 'categories':
+                    // Node name already checked
                     return new CategoryDocument($extensions, $document);
             }
         }
@@ -61,16 +61,16 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
      *
      * @return Document|null
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function createDocument(Extensions $extensions, $name)
     {
         switch ($name) {
             case 'app:service':
+                // No document — no exception.
                 return new ServiceDocument($extensions);
             case 'app:categories':
+                // No document — no exception.
                 return new CategoryDocument($extensions);
         }
 
@@ -85,8 +85,6 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
      *
      * @return Element|null
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function parseElement(Node $parent, \DOMElement $element)
@@ -94,8 +92,10 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
         if (AtomPub::NS === $element->namespaceURI) {
             switch ($element->localName) {
                 case 'collection':
+                    // Node name already checked
                     return new Collection($parent, $element);
                 case 'workspace':
+                    // Node name already checked
                     return new Workspace($parent, $element);
             }
         }
@@ -111,7 +111,7 @@ class AtomPubExtension implements DocumentExtension, ElementExtension, Namespace
      *
      * @return Element|null
      *
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException If $element has invalid namespace.
      *
      * @since 1.0
      */

@@ -25,8 +25,6 @@ class Workspace extends Element
      *
      * @return Collection[]
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function getCollections()
@@ -36,6 +34,7 @@ class Workspace extends Element
             function () {
                 $result = [];
                 /** @var \DOMNodeList $items */
+                // No REQUIRED — no exception.
                 $items = $this->query('app:collection');
                 foreach ($items as $item) {
                     $result[] = $this->getExtensions()->parseElement($this, $item);
@@ -52,8 +51,6 @@ class Workspace extends Element
      * @param string $title
      *
      * @return Collection
-     *
-     * @throws \InvalidArgumentException
      *
      * @since 1.0
      */

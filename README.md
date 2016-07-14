@@ -12,45 +12,54 @@ an object-oriented style. It does not contain the functionality to download or d
 
 This library is an extension of the package [Atom](https://packagist.org/packages/mekras/atom). 
 
-## AtomPub instead of Atom
-
-Your should use [AtomPub](src/AtomPub.php) class for parsing documents instead of `Atom`.
+## Parsing documents
 
 ```php
-use Mekras\AtomPub\AtomPub;
+use Mekras\Atom\Document\EntryDocument;
+use Mekras\Atom\Document\FeedDocument;
 use Mekras\Atom\Exception\AtomException;
+use Mekras\AtomPub\Document\CategoryDocument;
+use Mekras\AtomPub\Document\ServiceDocument;
+use Mekras\AtomPub\DocumentFactory;
 
-$parser = new AtomPub;
+$factory = new DocumentFactory;
 
 $xml = file_get_contents('http://example.com/atom');
 try {
-    $document = $parser->parseXML($xml);
+    $document = $factory->parseXML($xml);
 } catch (AtomException $e) {
     die($e->getMessage());
 }
-//...
+
+if ($document instanceof CategoryDocument) {
+    $categories = $document->getCategories();
+    //...
+} elseif ($document instanceof ServiceDocument) {
+    $workspaces = $document->getWorkspaces();
+    //...
+} elseif ($document instanceof FeedDocument) {
+    $feed = $document->getFeed();
+    //...
+} elseif ($document instanceof EntryDocument) {
+    $entry = $document->getEntry();
+    //...
+}
 ```
-
-## Additional documents
-
-`AtomPub` class registers new document types:
-
-- [ServiceDocument](src/Document/ServiceDocument.php)
-- [CategoryDocument](src/Document/CategoryDocument.php)
 
 ## Creating entries
 
 ```php
-use Mekras\Atom\Document\EntryDocument;
+use Mekras\AtomPub\DocumentFactory;
 
-$document = new EntryDocument();
+$factory = new DocumentFactory;
+$document = $factory->createDocument('atom:entry');
 $entry = $document->getEntry();
-$entry->setId('urn:foo:entry:0001');
-$entry->setTitle('Entry Title');
-$entry->addAuthor('Author 1', 'foo@example.com');
-$entry->addAuthor('Author 2', null, 'http://example.com/');
-$entry->getContent()->setValue('<h1>Entry content</h1>', 'html');
+$entry->addId('urn:entry:0001');
+$entry->addTitle('Entry Title');
+$entry->addAuthor('Author 1')->setEmail('foo@example.com');
+$entry->addContent('<h1>Entry content</h1>', 'html');
 $entry->addCategory('tag1')->setLabel('Tag label')->setScheme('http://example.com/scheme');
+$entry->addUpdated(new \DateTime());
 
 // Suppose that $httpClient is some kind of HTTP client...
 $httpClient->sendRequest('POST', 'http://example.com/', (string) $document);

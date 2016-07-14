@@ -25,12 +25,11 @@ class Collection extends Element
      *
      * @return string|null
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function getHref()
     {
+        // No NS prefix — no exception.
         return $this->getAttribute('href');
     }
 
@@ -39,12 +38,11 @@ class Collection extends Element
      *
      * @param string $href
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function setHref($href)
     {
+        // No NS prefix — no exception.
         $this->setAttribute('href', $href);
     }
 
@@ -62,6 +60,7 @@ class Collection extends Element
             function () {
                 $result = [];
                 /** @var \DOMNodeList $nodes */
+                // No REQUIRED — no exception.
                 $nodes = $this->query('app:accept');
                 foreach ($nodes as $value) {
                     $result[] = trim($value->textContent);
@@ -82,6 +81,7 @@ class Collection extends Element
     public function setAcceptedTypes(array $types)
     {
         /** @var \DOMNodeList $nodes */
+        // No REQUIRED — no exception.
         $nodes = $this->query('app:accept');
         foreach ($nodes as $node) {
             $this->getDomElement()->removeChild($node);

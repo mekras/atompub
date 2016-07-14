@@ -23,8 +23,6 @@ class ServiceDocument extends Document
      *
      * @return Workspace[]
      *
-     * @throws \InvalidArgumentException
-     *
      * @since 1.0
      */
     public function getWorkspaces()
@@ -49,8 +47,6 @@ class ServiceDocument extends Document
      * @param string $title
      *
      * @return Workspace
-     *
-     * @throws \InvalidArgumentException
      *
      * @since 1.0
      */

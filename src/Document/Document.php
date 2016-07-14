@@ -27,7 +27,7 @@ abstract class Document extends AtomDocument
      * @param Extensions        $extensions Extension registry.
      * @param \DOMDocument|null $document   Source document.
      *
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException If $document root node has invalid name.
      *
      * @since 1.0
      */
