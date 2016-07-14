@@ -12,11 +12,11 @@
             "email": "m.krasilnikov@yandex.ru"
         }
     ],
-    "minimum-stability": "alpha",
+    "minimum-stability": "beta",
     "prefer-stable": true,
     "require": {
         "php": ">=5.6",
-        "mekras/atom": "^1.0.0-alpha",
+        "mekras/atom": "^1.0.0-beta",
         "mekras/class-helpers": "^1.2"
     },
     "require-dev": {

@@ -44,7 +44,7 @@ class ServiceDocumentTest extends TestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Unexpected node "foo", expecting "service"
+     * @expectedExceptionMessage Unexpected root node "foo", expecting "service"
      */
     public function testInvalidTag()
     {
