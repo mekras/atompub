@@ -1,5 +1,13 @@
 # [Atom Publishing Protocol](http://tools.ietf.org/html/rfc5023) support library
 
+## Maintenance status
+
+This project is no longer maintained and is archived for historical reference.
+No further updates or fixes, including security fixes, are planned.
+Compatibility with current PHP versions and dependencies has not been verified.
+The documentation and examples below describe the historical version.
+
+
 [![Latest Stable Version](https://poser.pugx.org/mekras/atompub/v/stable.png)](https://packagist.org/packages/mekras/atompub)
 [![License](https://poser.pugx.org/mekras/atompub/license.png)](https://packagist.org/packages/mekras/atompub)
 [![Build Status](https://travis-ci.org/mekras/atompub.svg?branch=master)](https://travis-ci.org/mekras/atompub)
